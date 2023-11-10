@@ -7,33 +7,39 @@ block content
       table.table.table-striped.table-bordered
          tr
            td Name
-           td Category
-           td Date
-           td Complete
+           td Status
+          //-  td Date
+          //-  td Complete
          if (typeof tasks === "undefined")
            tr
              td
          else
            each task in tasks
+            if (task.name === "John Doe")
              tr
                td #{task.name}
-               td #{task.category}
-               - var date  = new Date(task.date);
-               - var day   = date.getDate();
-               - var month = date.getMonth() + 1;
-               - var year  = date.getFullYear();
-               td #{month + "/" + day + "/" + year}
-               td
-                if(task.completed) 
-                 input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
-                else
-                 input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
+               td #{task.status}
+              //-  td #{task.category}
+              //-  - var date  = new Date(task.date);
+              //-  - var day   = date.getDate();
+              //-  - var month = date.getMonth() + 1;
+              //-  - var year  = date.getFullYear();
+              //-  td #{month + "/" + day + "/" + year}
+              //-  td
+              //-   if(task.completed) 
+              //-    input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
+              //-   else
+              //-    input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
        button.btn.btn-primary(type="submit") Update tasks
      hr
      form.well(action="/addtask", method="post")
-       label Item Name:
+       label Name:
        input(name="name", type="textbox")
-       label Item Category:
-       input(name="category", type="textbox")
+       label Email:
+       input(name="email", type="textbox")
+       label BirthDate:
+       input(name="birthdate", type="textbox")
+       label Status:
+       input(name="status", type="textbox")
        br
        button.btn(type="submit") Add item
